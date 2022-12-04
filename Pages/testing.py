@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import mplcursors
+import streamlit as st
+
 np.random.seed(42)
 
 fig, ax = plt.subplots()
@@ -10,3 +12,6 @@ ax.set_title("Mouse over a point")
 mplcursors.cursor(hover=True)
 
 plt.show()
+
+
+st.write("Testing code")
