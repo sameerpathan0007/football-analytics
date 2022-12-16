@@ -131,8 +131,6 @@ if st.button("Generate pass network"):
     st.write(fig)
 
     # fig, axs = pitch.grid(figheight=10, title_height=0.08, endnote_space=0,
-    #                       # Turn off the endnote/title axis. I usually do this after
-    #                       # I am happy with the chart layout and text placement
     #                       axis=False,
     #                       title_space=0, grid_height=0.82, endnote_height=0.05)
     # fig.set_facecolor("black")
@@ -162,6 +160,6 @@ if st.button("Generate pass network"):
 
     # # sphinx_gallery_thumbnail_path = 'gallery/pitch_plots/images/sphx_glr_plot_pass_network_002.png'
 
-    # plt.show()  # If you are using a Jupyter notebook you do not need this line
+    # plt.show()  
     # fig.savefig('pass_network_rma.jpg',dpi=1200)
 

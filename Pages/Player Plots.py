@@ -1,66 +1,131 @@
-# import streamlit as st
+import streamlit as st
 
-# st.set_page_config(
-#     page_title = "Player Plots",
-#     page_icon = "📊"
-# )
+st.set_page_config(
+    page_title = "Player Plots",
+    page_icon = "📊"
+)
 
+from urllib.request import urlopen
+
+import matplotlib.pyplot as plt
+from PIL import Image
+
+from mplsoccer import PyPizza, add_image, FontManager
 import pandas as pd
-import numpy as np
-# import matplotlib.pyplot as plt
 
-stats_df = pd.read_csv('D:/University of Leeds/MSc Project/Player Recommendation System/data/player_stats.csv')
-npxg = stats_df['Player']
+font_normal = FontManager(("https://github.com/google/fonts/blob/main/apache/roboto/"
+                           "Roboto%5Bwdth,wght%5D.ttf?raw=true"))
+font_italic = FontManager(("https://github.com/google/fonts/blob/main/apache/roboto/"
+                           "Roboto-Italic%5Bwdth,wght%5D.ttf?raw=true"))
+font_bold = FontManager(("https://github.com/google/fonts/blob/main/apache/robotoslab/"
+                         "RobotoSlab%5Bwght%5D.ttf?raw=true"))
 
-# st.table(npxg.head())
+data = pd.read_csv(r'D:\University of Leeds\MSc Project\lewy_stats.csv')
 
+# parameter list
+params = ["Non-Penalty Goals", "npxG", "Total Shots","Assists","npxG + xA","Open Play\nShot Creating Actions",
+            "Progressive\nPasses",
+          "Dribbles Completed", "Pass Completion", "Touches", "Pressure Regains",
+          "Tackles Made", "Blocks","Interceptions", "Aerial Win %"]
 
-# def read_data():
-#     stats_df = pd.read_csv('D:/University of Leeds/MSc Project/Player Recommendation System/data/player_stats.csv')
-#     npxg = stats_df['Player']
+# value list
+# The values are taken from the excellent fbref website (supplied by StatsBomb)
+values = [96, 91, 96, 93, 97, 96, 99, 72, 99, 97, 18, 16, 20, 27, 13]
+# values = data_list
 
-#     return npxg.head()
+# color for the slices and text
+slice_colors = ["#1A78CF"] * 5 + ["#FF9300"] * 5 + ["#D70232"] * 5
+text_colors = ["#000000"] * 10 + ["#F2F2F2"] * 5
 
-# stats_df = read_data()
+# instantiate PyPizza class
+baker = PyPizza(
+    params=params,                  # list of parameters
+    background_color="black",     # background color
+    straight_line_color="#000000",  # color for straight lines
+    straight_line_lw=1,             # linewidth for straight lines
+    last_circle_color="#000000",    # color for last line
+    last_circle_lw=1,               # linewidth of last circle
+    other_circle_lw=0,              # linewidth for other circles
+    inner_circle_size=20            # size of inner circle
+)
 
-# st.markdown("<h1 style='text-align: center'>Player Performances</h1>", unsafe_allow_html=True)
-# st.markdown('Player suggestion method for the top five European Leagues that produces the most comparable players for a specific player based on numerous characteristics from the 17–18 to the 21–22 season.')
+# plot pizza
+fig, ax = baker.make_pizza(
+    values,                          # list of values
+    figsize=(8, 8.5),                # adjust the figsize according to your need
+    # color_blank_space="white",        # use the same color to fill blank space
+    slice_colors=slice_colors,       # color for individual slices
+    value_colors=text_colors,        # color for the value-text
+    value_bck_colors=slice_colors,   # color for the blank spaces
+    blank_alpha=0.4,                 # alpha for blank-space colors
+    kwargs_slices=dict(
+        edgecolor="#000000", zorder=2, linewidth=1
+    ),                               # values to be used when plotting slices
+    kwargs_params=dict(
+        color="white", fontsize=11,
+        fontproperties=font_normal.prop, va="center"
+    ),                               # values to be used when adding parameter labels
+    kwargs_values=dict(
+        color="white", fontsize=11,
+        fontproperties=font_normal.prop, zorder=3,
+        bbox=dict(
+            edgecolor="#000000", facecolor="white",
+            boxstyle="round,pad=0.2", lw=1
+        )
+    )                                # values to be used when adding parameter-values labels
+)
 
+# add title
+fig.text(
+    0.515, 0.975, "Karim Benzema - Real Madrid CF", size=16,
+    ha="center", fontproperties=font_bold.prop, color="red"
+)
 
-def get_list(df,col):
-    items = df[col].unique()
-    items = np.insert(items,0,'All')
-    return items
+# add subtitle
+fig.text(
+    0.515, 0.955,
+    "Percentile Rank vs Top-Five League Forwards | Season 2021-22",
+    size=13,
+    ha="center", fontproperties=font_bold.prop, color="white"
+)
 
+# add credits
+CREDIT_1 = "Data: Statsbomb via FBREF"
+CREDIT_2 = "Sameer Pathan"
 
-seasons = get_list(stats_df,'Season')
-leagues = get_list(stats_df,'Season')
-positions = get_list(stats_df,'Season')
-players = stats_df['Player']
+fig.text(
+    0.99, 0.02, f"{CREDIT_1}\n{CREDIT_2}", size=9,
+    fontproperties=font_italic.prop, color="white",
+    ha="right"
+)
 
+# add text
+fig.text(
+    0.34, 0.93, "Attacking        Possession       Defending", size=14,
+    fontproperties=font_bold.prop, color="white"
+)
 
-# @st.cache(show_spinner=False)
-def create_dict(df, items):
-    return [dict(zip(df['Player'], df[item])) for item in items]
+# add rectangles
+fig.patches.extend([
+    plt.Rectangle(
+        (0.31, 0.9225), 0.025, 0.021, fill=True, color="#1a78cf",
+        transform=fig.transFigure, figure=fig
+    ),
+    plt.Rectangle(
+        (0.462, 0.9225), 0.025, 0.021, fill=True, color="#ff9300",
+        transform=fig.transFigure, figure=fig
+    ),
+    plt.Rectangle(
+        (0.632, 0.9225), 0.025, 0.021, fill=True, color="#d70232",
+        transform=fig.transFigure, figure=fig
+    ),
+])
 
-cols = ['Season', 'Pos', 'Squad', 'Comp', 'Age', 'Foot']
-player_mappings = create_dict(stats_df, cols)
-select_player = st.sidebar.selectbox(
-    'Select Player',
-    players)
+# add image
+# ax_image = add_image(
+#     benz_photo, fig, left=0.4478, bottom=0.4390, width=0.13, height=0.127
+# )   # these values might differ when you are plotting
 
-player_team = player_mappings[2][select_player]
-print(player_team)
+plt.show()
 
-player_tt = list(player_team)
-
-# st.table(player_tt)
-# select_season = st.sidebar.selectbox(
-#     'Select Season',
-#     seasons
-# )
-
-# select_pos = st.sidebar.selectbox(
-#     'Compare With Position: ',
-#     positions
-# )
+st.write(fig)

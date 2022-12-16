@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 from highlight_text import fig_text
 from matplotlib.patches import Arc
 import numpy as np
+from mplsoccer import Pitch, FontManager, Sbopen
 
-# Entering Aleksander Isak ID link
 # st.write('Enter Player ID')
 player_id = st.text_input('Enter Player ID')
 link = f"https://understat.com/player/{player_id}"
@@ -54,7 +54,7 @@ if st.button('Generate Shotmap!'):
                 ):
 
         if not ax:
-            raise TypeError("This function is intended to be used with an existing fig and ax in order to allow flexibility in plotting of various sizes and in subplots.")
+            raise TypeError("Use the function in conjuction with existing fig and ax in order to plot subplots of different shapes and sizes.")
 
 
         if orientation.lower().startswith("h"):
@@ -201,9 +201,13 @@ if st.button('Generate Shotmap!'):
         return ax
 
     fig, ax = plt.subplots(figsize=(11, 7))
-    #Drawing a full pitch horizontally
-    football_pitch(orientation="horizontal",aspect="full",line_color="black",ax=ax, axis='on')
+    # Drawing a full pitch horizontally
+    football_pitch(orientation="horizontal",aspect="full",line_color="white",ax=ax, axis='on')
     plt.tight_layout()
+    # pitch = Pitch(pitch_type='statsbomb', pitch_color='grass', line_color='#c7d5cc')
+    # fig, ax = pitch.draw(figsize=(16, 11), constrained_layout=True, tight_layout=False)
+    # fig.set_facecolor("#22312b")
+    # st.write(fig)
 
     shots['X1'] = (shots['X']/100)*105*100
     shots['Y1'] = (shots['Y']/100)*68*100
