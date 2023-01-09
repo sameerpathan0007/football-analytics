@@ -1,0 +1,289 @@
+Player,Versus,StatGroup,Statistic,Per90,Percentile,BasedOnMinutes,scouting_period,,Goals
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.4,63,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.47,83,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Shots Total,4.02,95,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Assists,0.07,34,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,xAG,0.14,64,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.62,78,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,2.83,73,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,32.03,88,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,81.2,96,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.52,63,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,0.62,33,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),5.58,73,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,6.56,69,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.4,22,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0.07,11,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.18,2,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Clearances,1.01,76,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Aerials won,1.81,59,2484,Last 365 Days,,35
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.17,40,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.68,95,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Shots Total,5.09,97,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Assists,0.34,82,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,xAG,0.29,90,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.97,95,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,2.72,71,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,30.23,94,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,83.7,99,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.87,82,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,0.34,32,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),6.62,92,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,8.66,94,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.17,12,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0,23,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.17,16,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Clearances,0.17,31,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Aerials won,1.7,66,530,2022-2023 Europa League,,2
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.17,19,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.33,53,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Shots Total,4.29,88,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Assists,0,14,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,xAG,0.07,34,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.39,43,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,1.89,29,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,27.77,84,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,74.7,78,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.2,53,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,0.69,57,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),5.14,64,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,5.49,64,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.34,12,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0.17,43,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Blocks,0,2,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Clearances,1.54,91,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Aerials won,2.57,81,525,2022-2023 Premier League,,3
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0,15,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.25,47,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Shots Total,3.1,80,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Assists,0,39,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,xAG,0.03,41,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.31,41,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,3.1,86,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,27.93,74,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,75.6,79,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.24,59,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,0,17,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),5.59,89,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,8.38,92,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Tackles,0,8,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0,26,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Blocks,0,6,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Clearances,0.31,35,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Aerials won,2.48,71,290,2022 World Cup,,2
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.55,96,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.57,96,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Shots Total,3.92,99,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Assists,0.11,39,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,xAG,0.12,40,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.69,91,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,3,70,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,33.13,81,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,80.3,92,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.39,48,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,0.73,27,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),6.16,88,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,6.6,80,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.29,6,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0.07,14,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.29,1,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Clearances,1.06,80,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Aerials won,1.54,53,2456,2021-2022 Premier League,,18
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.89,87,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.43,51,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Shots Total,3.25,73,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Assists,0,31,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,xAG,0.07,32,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.5,47,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,2.95,59,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,30.84,72,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,85.6,97,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,2.07,61,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,1.33,63,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),4.13,39,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,6.93,68,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.44,39,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0,16,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.89,72,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Clearances,1.03,80,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Aerials won,1.18,51,610,2021-2022 Champions League,,6
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.5,68,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.63,88,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Shots Total,3,67,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Assists,0.25,78,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,xAG,0.35,92,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.98,95,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,2.25,52,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,33.75,88,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,81.5,88,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,2.5,95,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,2,85,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),5.25,68,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,6.75,82,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.5,55,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0,23,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.25,25,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Clearances,0.5,45,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Aerials won,2.75,72,360,2021 European Championship,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.32,52,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.46,63,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Shots Total,3.32,86,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Assists,0.32,86,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,xAG,0.13,54,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.57,52,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,3.95,89,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,35.59,75,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,77.3,71,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.74,54,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,1.58,66,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),6.01,75,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,7.59,78,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Tackles,0,8,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0.32,45,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.16,2,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Clearances,0.79,70,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Aerials won,0.63,28,569,2020-2021 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.74,98,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.69,95,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Shots Total,5.14,98,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Assists,0.1,33,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,xAG,0.12,48,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.81,95,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,3.92,83,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,34.63,80,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,77.7,82,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,2.38,77,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,1.86,83,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),6.2,83,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,6.78,68,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.19,5,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0.16,30,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.35,14,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Clearances,0.48,42,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Aerials won,0.67,18,2802,2020-2021 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.38,53,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.46,57,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Shots Total,4.94,96,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Assists,0,22,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,xAG,0.06,24,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.52,41,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,3.54,63,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,38.61,80,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,81,90,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.9,59,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,1.77,67,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),5.57,66,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,7.85,79,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.13,9,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0.51,69,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.13,11,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Clearances,0.51,54,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Aerials won,1.01,41,711,2019-2020 Champions League,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Non-Penalty Goals,0.59,97,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Non-Penalty xG,0.57,99,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Shots Total,6.02,99,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Assists,0.15,45,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,xAG,0.2,51,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,npxG + xAG,0.76,99,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Shot-Creating Actions,4.57,66,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Passes Attempted,39.09,46,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Pass Completion %,83,92,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Progressive Passes,1.97,24,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Dribbles Completed,1.64,46,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Touches (Att Pen),6.54,99,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Progressive Passes Rec,8.27,96,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Tackles,0.43,6,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Interceptions,0.19,10,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Blocks,0.31,8,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Clearances,0.65,59,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Att Mid / Wingers,Standard,Aerials won,1.11,85,2917,2019-2020 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.54,89,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.59,98,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Shots Total,5.73,99,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Assists,0.27,92,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,xAG,0.15,70,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.74,98,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,4.85,89,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,37.3,84,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,82.1,90,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.94,73,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,1.51,83,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),6.56,95,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,9.31,96,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.33,7,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0.2,45,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.23,8,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Clearances,1.07,81,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Aerials won,1.07,37,2688,2018-2019 Serie A,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.6,78,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.49,68,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Shots Total,5.66,98,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Assists,0.24,73,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,xAG,0.39,91,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.88,91,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,5.05,93,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,35.37,83,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,79.3,81,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.56,45,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,2.17,91,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),6.02,85,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,9.51,93,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.36,30,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0.36,63,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.24,20,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Clearances,0.72,50,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Aerials won,1.93,60,748,2018-2019 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.75,85,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.35,60,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Shots Total,4.75,98,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Assists,0,29,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,xAG,0.13,56,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,0.48,63,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,3.5,82,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,30.75,92,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,80.5,85,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1,34,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,1.75,79,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),3.25,27,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,5,37,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Tackles,0,6,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0,24,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.5,27,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Clearances,1,58,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Aerials won,2,37,360,2018 FIFA World Cup,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.91,97,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.87,99,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Shots Total,6.85,99,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Assists,0.2,81,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,xAG,0.2,82,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,1.06,97,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,3.9,92,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,31.08,77,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,77.9,93,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.97,79,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,1.22,68,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),9.1,99,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,9.22,95,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.28,6,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0.24,36,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.39,19,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Clearances,0.55,38,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Aerials won,1.34,44,2285,2017-2018 La Liga,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty Goals,0.85,90,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Non-Penalty xG,0.9,97,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Shots Total,6,99,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Assists,0.23,68,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,xAG,0.25,84,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,npxG + xAG,1.15,99,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Shot-Creating Actions,3.77,84,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Passes Attempted,31.38,73,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Pass Completion %,78.2,80,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes,1.38,40,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Dribbles Completed,1.69,75,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Touches (Att Pen),9.38,99,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Progressive Passes Rec,9.62,90,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Tackles,0.38,18,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Interceptions,0.23,36,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Blocks,0.62,53,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Clearances,0.77,68,1170,2017-2018 Champions League,,
+Cristiano Ronaldo,Forwards,Standard,Aerials won,1.69,58,1170,2017-2018 Champions League,,

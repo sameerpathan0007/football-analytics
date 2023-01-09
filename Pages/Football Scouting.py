@@ -50,8 +50,6 @@ player_similarity = scale_features(player_df, stats_df)
 st.markdown("<h1 style='text-align: center'>Football Scouting System</h1>", unsafe_allow_html=True)
 st.markdown('Player suggestion method for the top five European Leagues that produces the most comparable players for a specific player based on numerous characteristics from the 17–18 to the 21–22 season.')
 st.markdown('This kind of tool can be helpful in the early phases of the hiring process to narrow the alternatives down to the most comparable candidates for a certain player for whom the club is looking for a replacement.')
-# st.markdown("Team similarity is also added as an extra feature to provide more context and  help find" \
-# " suitable players that not only match individually but can also fit well in the team's particular playing style.")
 st.markdown('Cosine similarity is a similarity metric that was later standardised to include a 0 to 100 range.')
 
 @st.cache
@@ -66,35 +64,55 @@ foot = get_list(stats_df, 'Foot')
 positions = get_list(stats_df, 'Pos')
 players = stats_df['Player']
 
-select_player = st.sidebar.selectbox(
+select_player = st.selectbox(
     'Select Player',
     players)
 player_team = player_mappings[2][select_player]
 
-results = st.sidebar.slider('Number Of Results', 5, 20)
-min_age = stats_df['Age'].min()
-max_age = stats_df['Age'].max()
-age_bracket = st.sidebar.slider('Age Bracket', float(min_age), float(max_age), value=[float(min_age), float(max_age)])
+col1, col2, col3, col4 = st.columns(4)
 
-select_season = st.sidebar.selectbox(
-    'Select Season',
-    seasons
-)
 
-select_league = st.sidebar.selectbox(
-    'Select League',
-    leagues
-)
 
-select_foot = st.sidebar.selectbox(
-    'Select Preferred Foot',
-    foot
-)
 
-select_pos = st.sidebar.selectbox(
-    'Compare With Position: ',
-    positions
-)
+with col1:
+    select_season = st.selectbox(
+        'Select Season',
+        seasons
+    )
+with col2:
+    select_league = st.selectbox(
+        'Select League',
+        leagues
+    )
+
+with col3:
+    select_foot = st.selectbox(
+        'Select Preferred Foot',
+        foot
+    )
+
+with col4:
+    select_pos = st.selectbox(
+        'Position: ',
+        positions
+    )
+
+col5, col6 = st.columns(2)
+
+with col5:
+    min_age = stats_df['Age'].min()
+    max_age = stats_df['Age'].max()
+    age_bracket = st.slider('Age Bracket', float(min_age), float(max_age), value=[float(min_age), float(max_age)])
+    # age_bracket = st.slider('Age Bracket',16,42)
+
+with col6:
+    results = st.slider('Number Of Results', 5, 20)
+
+
+
+
+
+
 
 @st.cache(show_spinner=False)
 def recommend_players(player, squad, player_data, squad_data, mappings, output, age, season='All', league='All', foot='All', pos='All'):

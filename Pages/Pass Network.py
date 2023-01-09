@@ -6,18 +6,76 @@ import streamlit as st
 from mplsoccer import Pitch, FontManager, Sbopen
 import streamlit as st
 from statsbombpy import sb
+from urllib.request import urlopen
+import warnings
+
+import cmasher as cmr
+import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image
+from highlight_text import ax_text
+
+from mplsoccer import Pitch, VerticalPitch, add_image, FontManager, Sbopen
+st.set_page_config(
+    page_title = "Pass Network",
+    page_icon = "🕸️"
+)
+
+
+st.markdown("<h1 style='text-align: center'>Pass Network</h1>", unsafe_allow_html=True)
+
+
+# col1, col2 = st.columns(2)
+
+# with col1:
+
+
+# # comps = list(events['competition_id'].unique())
+#     league = st.selectbox(
+#         'Select a League',
+#         matches['league'].unique())
+
+# with col2:
+
+#     season = st.select_slider(
+#         'Select a Season',
+#         matches['season'].unique())
+
+# matches = matches.loc[(matches['league'] == league) & (matches['season'] == season)]
+
+# match_dict = {}
+
+# # home = matches['home_team'][0]
+# # away = matches['away_team'][0]
+
+# # match = f'{home} vs {away}'
+
+# # print(match)
+# final = {}
+# for index, row in matches.iterrows():
+#     new = row['home_team'] + ' vs ' + row['away_team']
+#     final[new] = row['match_id']
+
+# # st.write(match_dict)
+
+
+# select_match = st.selectbox(
+#     'Select Match',
+#     final)
+
+# # st.write(final[select_match])
+
 
 events = sb.competitions()
 
 matches = [267569,9924]
+st.write("Include Team Pass Networks")
 
-
-st.header('Pass Network for Real Madrid')
-st.subheader('Available match data for Real Madrid')
-st.dataframe(events.head())
+st.subheader('Available match data for FC Barcelona')
+# st.dataframe(events.head())
 # st.dataframe(events['competition_id'].unique())
 evnts = events[['competition_id','competition_name']]
-st.dataframe(evnts['competition_name'].unique())
+# st.dataframe(evnts['competition_name'].unique())
 # comps = list(events['competition_id'].unique())
 comp = st.selectbox(
     'Select a Competition',
@@ -163,3 +221,8 @@ if st.button("Generate pass network"):
     # plt.show()  
     # fig.savefig('pass_network_rma.jpg',dpi=1200)
 
+with st.expander(f"Pass Network"):
+    st.write('In a pass network diagram, each player is represented by a node, and the arrows between the nodes represent passes between players. The thickness of the arrow can represent the frequency of passes between those players, with thicker arrows indicating a higher number of passes. The direction of the arrow shows the direction that the pass was made, and the length of the arrow can represent the distance of the pass.')
+    st.write('''Lines between players represent passes that were attempted
+            The size of a player's dot indicates the number of passes they attempted
+            The thickness of a line between players indicates the number of passes attempted between them''')

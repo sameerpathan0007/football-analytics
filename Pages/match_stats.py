@@ -1,5 +1,3 @@
-# Animate shots as it happened one by one.
-
 
 # Data Handling & Analysis
 import datetime
@@ -21,6 +19,52 @@ import streamlit as st
 from highlight_text import fig_text
 
 st.header('Match Summary')
+
+matches = pd.read_csv('D:\Analytics\matches.csv')
+
+
+
+col1, col2 = st.columns(2)
+
+with col1:
+
+
+# comps = list(events['competition_id'].unique())
+    league = st.selectbox(
+        'Select a League',
+        matches['league'].unique())
+
+with col2:
+
+    season = st.select_slider(
+        'Select a Season',
+        matches['season'].unique())
+
+matches = matches.loc[(matches['league'] == league) & (matches['season'] == season)]
+
+match_dict = {}
+
+# home = matches['home_team'][0]
+# away = matches['away_team'][0]
+
+# match = f'{home} vs {away}'
+
+# print(match)
+final = {}
+for index, row in matches.iterrows():
+    new = row['home_team'] + ' vs ' + row['away_team']
+    final[new] = row['match_id']
+
+# st.write(match_dict)
+
+
+select_match = st.selectbox(
+    'Select Match',
+    final)
+
+# st.write(final[select_match])
+
+
 
 def scrape_script_data(match_id):
     """Web scrape the match info and return the Beautiful object and a dictionary for the home and away team's data."""
@@ -53,28 +97,49 @@ def extract_date(data_dict):
 
     return date.strftime('%d %B %Y')
 
-
-def extract_summary_stats(soup_object):
+def extract_summary_stats(soup):
     """Return the game's summary statistics in a separate Pandas DataFrame."""
-    table = soup_object.find('div', {'class': 'scheme-block', 'data-scheme': 'stats'})
+    summary_table = soup.find('div', {'class': 'scheme-block', 'data-scheme': 'stats'})
 
-    cols = [val.text for val in table.find_all('div', {'class': 'progress-title'})]
-    vals = [val.text for val in table.find_all('div', {'class': 'progress-value'})]
+    column_labels = [val.text for val in summary_table.find_all('div', {'class': 'progress-title'})]
+    values = [val.text for val in summary_table.find_all('div', {'class': 'progress-value'})]
 
-    summary_dict = {}
-    j = 0
-    for i in range(len(cols)):
-        summary_dict[cols[i]] = vals[j:j + 2]
+    summary_data = {}
+    index = 0
+    for i in range(len(column_labels)):
+        summary_data[column_labels[i]] = values[index:index + 2]
 
         increment = 3 if i == 1 else 2
-        j += increment
+        index += increment
 
-    df_summary = pd.DataFrame(summary_dict, index=['Home', 'Away']).T
-    df_summary.drop(['CHANCES'], inplace=True)
-    df_summary.index = ['Teams', 'Goals', 'xG',
+    summary_df = pd.DataFrame(summary_data, index=['Home', 'Away']).T
+    summary_df.drop(['CHANCES'], inplace=True)
+    summary_df.index = ['Teams', 'Goals', 'xG',
                         'Shots', 'On Target', 'DEEP', 'PPDA', 'xPTS']
 
-    return df_summary
+    return summary_df
+
+# def extract_summary_stats(soup_object):
+#     """Return the game's summary statistics in a separate Pandas DataFrame."""
+#     table = soup_object.find('div', {'class': 'scheme-block', 'data-scheme': 'stats'})
+
+#     cols = [val.text for val in table.find_all('div', {'class': 'progress-title'})]
+#     vals = [val.text for val in table.find_all('div', {'class': 'progress-value'})]
+
+#     summary_dict = {}
+#     j = 0
+#     for i in range(len(cols)):
+#         summary_dict[cols[i]] = vals[j:j + 2]
+
+#         increment = 3 if i == 1 else 2
+#         j += increment
+
+#     df_summary = pd.DataFrame(summary_dict, index=['Home', 'Away']).T
+#     df_summary.drop(['CHANCES'], inplace=True)
+#     df_summary.index = ['Teams', 'Goals', 'xG',
+#                         'Shots', 'On Target', 'DEEP', 'PPDA', 'xPTS']
+
+#     return df_summary
 
 
 def extract_headline(df_summary):
@@ -341,12 +406,13 @@ def create_figure(match_id, fig, ax):
     goals_away = df_away[df_away['result'] == 'Goal']
     shots_away = df_away[df_away['result'] != 'Goal']
 
-    bg_color = '#0f253a'
+    # bg_color = '#0f253a'
+    bg_color = 'green'
     goal_color = 'red'
     edgecolor = 'white'
     plt.rcParams['text.color'] = 'white'
 
-    plt.rcParams['font.family'] = 'Century Gothic'
+    # plt.rcParams['font.family'] = 'Century Gothic Regular'
     plt.rcParams.update({'font.size': 24})
 
     fig.patch.set_facecolor(bg_color)
@@ -467,14 +533,29 @@ def create_figure(match_id, fig, ax):
     ### 08 - Legend - Credit ###
     credit_text = 'Data: Understat | Sameer Pathan'
     ax.text(x=105, y=-14, s=credit_text, size=16, ha='right')
-    st.write(fig)
+    # st.write(fig)
+    st.pyplot(fig=fig,clear_figure=True)
 
-match_id = st.text_input('Enter the match ID')
+# match_id = st.text_input('Enter the match ID')
 
 fig, ax = plt.subplots(figsize=(18.48, 12))
 
-if st.button('Match Summary'):
-    create_figure(match_id, fig, ax)
+
+tab1, tab2 = st.tabs(["Match Visualisation", "xG Timeline"])
+
+with tab1:
+
+    # if st.button('Match Summary'):
+    create_figure(final[select_match], fig, ax)
+
+    st.write("This is a match played between so and so.dsvsdflvndflbndfbodfbldfbndfbldfbldfbldflbdfbdfb")
+    info2, info3 = st.columns(2)
+    # info1.write("This is a match played between so and so.")
+    with st.expander("See explanation"):
+        st.write("The chart above shows some numbers I picked for you. I rolled actual dice for these, so they're *guaranteed* to be random.")
+        st.image("https://static.streamlit.io/examples/dice.jpg")
+        info2.write("An image describing the graph")
+        info3.write("A key to understand the graph. Color codes.")
 
 
 def xg_timeline(match_id):
@@ -546,11 +627,11 @@ def xg_timeline(match_id):
     fig,ax = plt.subplots(figsize = (16,8))
 
     # Step plot for Inter and Udinese 
-    ax.step(x = df_home['minute'] ,y = df_home['xGcum'] , where = 'post', color = 'cyan' ,linewidth = 4.0)
+    ax.step(x = df_home['minute'] ,y = df_home['xGcum'] , where = 'post', color = 'blue' ,linewidth = 4.0)
     ax.step(x = df_away['minute'] ,y = df_away['xGcum'] , where = 'post', color = 'red' ,linewidth = 4.0)
 
     #sns.scatterplot(x=x,y=y,s=430,marker='o',color='yellow')
-    ax.scatter(x=x,y=y, color='cyan', edgecolor='black',s=955, label="Inter",linewidths=1.5,)
+    ax.scatter(x=x,y=y, color='blue', edgecolor='black',s=955, label="Inter",linewidths=1.5,)
     ax.scatter(x=x1,y=y1, color='red', edgecolor='black',s=955, label="Udinese",linewidths=1.5)
 
     #FILL AREA BETWEEN LINE AND X 
@@ -569,8 +650,8 @@ def xg_timeline(match_id):
     legend.legendHandles[1]._sizes = [1000]
 
     # title
-    fig_text(0.08,1.03, s="xG Flowchart Calcio Serie A\n", fontsize = 25, fontweight = "light")
-    fig_text(0.08,0.97, s=" <{} {} xG> vs <{} {} xG>".format(team_home,xGcum_home,team_away,xGcum_away),highlight_textprops=[{"color":'cyan'}, {'color':"red"}], fontsize = 20, fontweight="light")
+    fig_text(0.08,1.03, s="xG Flowchart Calcio Serie A\n", fontsize = 25, fontweight = "bold")
+    fig_text(0.08,0.97, s=" <{} {} xG> vs <{} {} xG>".format(team_home,xGcum_home,team_away,xGcum_away),highlight_textprops=[{"color":'blue'}, {'color':"red"}], fontsize = 20, fontweight="light")
 
     # text
     fig_text(0.5,0.01, s="Minute\n", fontsize = 24, fontweight = "bold", color = "black")
@@ -595,5 +676,15 @@ def xg_timeline(match_id):
 
     st.write(fig)
 
-if st.button('xG Timeline'):
-    xg_timeline(match_id)
+
+# tab1.write("this is tab 1")
+# tab2.write("this is tab 2")
+with tab2:
+    # if st.button('xG Timeline'):
+    xg_timeline(final[select_match])
+    with st.expander("xG Value Explanation"):
+        st.write("The chart above shows some numbers I picked for you. I rolled actual dice for these, so they're *guaranteed* to be random.")
+        st.image("https://static.streamlit.io/examples/dice.jpg")
+
+with st.expander('This is how the data looks like.'):
+    st.dataframe(matches.head(5))

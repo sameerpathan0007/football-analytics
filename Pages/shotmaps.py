@@ -29,10 +29,13 @@ if st.button('Generate Shotmap!'):
     json_data = json_data.encode('utf8').decode('unicode_escape')
     data = json.loads(json_data)
 
-    shots = pd.DataFrame(data) # Player shot data
+    shots2 = pd.DataFrame(data) # Player shot data
+    shots_Data = pd.read_csv('D:\Analytics\shots_dataset.csv')
+    shots = shots_Data[shots_Data['player'] == 'Cristiano Ronaldo']
 
     st.write(shots.head())
-    name = shots['player'][0]
+    # name2 = shots['player'][0]
+    name = 'Cristiano Ronaldo'
 
     st.subheader(f'Player Selected: {name}')
     # Changing data type
