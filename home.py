@@ -6,7 +6,7 @@ import streamlit as st
 # from streamlit_option_menu import option_menu
 
 
-css_file = "D:\Analytics\styles.css"
+css_file = "styles.css"
 with open(css_file) as f:
     st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
 
