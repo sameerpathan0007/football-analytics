@@ -1,10 +1,8 @@
 import streamlit as st
 import numpy as np
 from urllib.request import urlopen
-
 import matplotlib.pyplot as plt
 from PIL import Image
-
 from mplsoccer import PyPizza, add_image, FontManager
 import pandas as pd
 
@@ -33,11 +31,11 @@ col1, col2 = st.columns(2)
 
 with col1:
     player1 = st.selectbox(
-        'Select a Player',
+        'Select Player 1',
         data['Player'].unique()
     )
     season1 = st.select_slider(
-        'Season',
+        'Season 1',
         data['scouting_period'].unique()
     )
 
@@ -61,14 +59,8 @@ def player_chart(player,season):
             "Dribbles Completed", "Pass Completion", "Touches", "Pressure Regains",
             "Tackles Made", "Blocks","Interceptions", "Aerial Win %"]
 
-    # value list
-    # The values are taken from the excellent fbref website (supplied by StatsBomb)
-    # values = [96, 91, 96, 93, 97, 96, 99, 72, 99, 97, 18, 16, 20, 27, 13]
-
     vals = data.loc[(data['Player']==player) & (data['scouting_period'] == season)]['Percentile'].head(15)
-    # matches = matches.loc[(matches['league'] == league) & (matches['season'] == season)]
     values = list(vals)
-    # values = data_list
 
     # color for the slices and text
     slice_colors = ["#1A78CF"] * 5 + ["#FF9300"] * 5 + ["#D70232"] * 5
@@ -121,7 +113,7 @@ def player_chart(player,season):
     # add subtitle
     fig.text(
         0.515, 0.955,
-        "Percentile Rank vs Top-Five League Forwards | Season 2021-22",
+        "Percentile Rank vs Top-Five League Forwards",
         size=13,
         ha="center", fontproperties=font_bold.prop, color="white"
     )
@@ -159,13 +151,6 @@ def player_chart(player,season):
     ])
     st.pyplot(fig)
 
-    
-
-# # add image
-# ax_image = add_image(
-#     "https://fbref.com/req/202208180/images/headshots/dea698d9_2022.jpg", fig, left=0.4478, bottom=0.4390, width=0.13, height=0.127
-# )   # these values might differ when you are plotting
-
 
 
 
@@ -195,10 +180,6 @@ st.subheader('Goals Scored by Season')
 p1 = data.loc[data['Player']==player1].head()
 
 goals = p1['Goals'].unique()
-# st.write(goals)
-# vals = data.loc[(data['Player']==player)]['Percentile'].head(15)
-# st.write(p1)
-# st.write(data[data['Player']==player1])
 
 goals = pd.read_csv(r'D:/Analytics/goals.csv')
 year = list(goals['scouting_period'])
@@ -212,7 +193,6 @@ chart_data = pd.DataFrame(
 st.subheader('Performance Variance')
 st.line_chart(chart_data)
 
-# im = Image.open("D:/Analytics/plot_Cristiano Ronaldo.png")
 with st.expander(f"More about {player2}"):
     st.write('TransferMarket')
 

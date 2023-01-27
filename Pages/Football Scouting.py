@@ -14,6 +14,12 @@ import streamlit as st
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics.pairwise import cosine_similarity
 
+css_file = "D:\Analytics\styles.css"
+with open(css_file) as f:
+    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+
+st.markdown("<h1 style='text-align: center'>Football Scouting System</h1>", unsafe_allow_html=True)
+
 #loading the data files
 @st.cache(show_spinner=False)
 def read_data():
@@ -47,10 +53,10 @@ def scale_features(df1, df2):
 
 player_similarity = scale_features(player_df, stats_df)
 
-st.markdown("<h1 style='text-align: center'>Football Scouting System</h1>", unsafe_allow_html=True)
-st.markdown('Player suggestion method for the top five European Leagues that produces the most comparable players for a specific player based on numerous characteristics from the 17–18 to the 21–22 season.')
-st.markdown('This kind of tool can be helpful in the early phases of the hiring process to narrow the alternatives down to the most comparable candidates for a certain player for whom the club is looking for a replacement.')
-st.markdown('Cosine similarity is a similarity metric that was later standardised to include a 0 to 100 range.')
+
+st.markdown('Player suggestion method for the top five European Leagues that produces the most comparable players for a specific player based on numerous characteristics from the 17–18 to the 21–22 season.This kind of tool can be helpful in the early phases of the hiring process to narrow the alternatives down to the most comparable candidates for a certain player for whom the club is looking for a replacement.')
+# st.markdown('')
+st.markdown('Cosine similarity is a similarity metric that was later standardised to include a 0 to 100 range. The tool generates a list of player recommendations based on the similarity scores as per the parameters selected.')
 
 @st.cache
 def get_list(df, col):

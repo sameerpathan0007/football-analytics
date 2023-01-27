@@ -1,24 +1,24 @@
-
-# Data Handling & Analysis
 import datetime
-
 import numpy as np
 import pandas as pd
 
-# Data Visualisation
 import matplotlib.pyplot as plt
+from matplotlib.patches import Arc
 import matplotlib.image as image
 
-# Web Scraping
 import json
 import requests
-
 from bs4 import BeautifulSoup
 
 import streamlit as st
 from highlight_text import fig_text
 
-st.header('Match Summary')
+
+css_file = "D:\Analytics\styles.css"
+with open(css_file) as f:
+    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+
+st.markdown("<h1 style='text-align: center'>Match Summary</h1>", unsafe_allow_html=True)
 
 matches = pd.read_csv('D:\Analytics\matches.csv')
 
@@ -29,7 +29,6 @@ col1, col2 = st.columns(2)
 with col1:
 
 
-# comps = list(events['competition_id'].unique())
     league = st.selectbox(
         'Select a League',
         matches['league'].unique())
@@ -44,61 +43,48 @@ matches = matches.loc[(matches['league'] == league) & (matches['season'] == seas
 
 match_dict = {}
 
-# home = matches['home_team'][0]
-# away = matches['away_team'][0]
-
-# match = f'{home} vs {away}'
-
-# print(match)
 final = {}
 for index, row in matches.iterrows():
     new = row['home_team'] + ' vs ' + row['away_team']
     final[new] = row['match_id']
 
-# st.write(match_dict)
 
 
 select_match = st.selectbox(
     'Select Match',
     final)
 
-# st.write(final[select_match])
 
 
 
 def scrape_script_data(match_id):
-    """Web scrape the match info and return the Beautiful object and a dictionary for the home and away team's data."""
     url = 'https://understat.com/match/{}'.format(match_id)
 
     response = requests.get(url)
     soup_object = BeautifulSoup(response.content, 'lxml')
 
-    # Retrieve all data with a <script> tag - Field data are in the second <script> group
     script_data = soup_object.find_all('script')
     field_stats = script_data[1].string
 
-    # Strip unnecessary symbols and get only JSON data
+    # Stripping unnecessary symbols and acquiring only JSON data
     ind_start = field_stats.index("('") + 2
     ind_end = field_stats.index("')")
 
     json_data = field_stats[ind_start:ind_end]
     json_data = json_data.encode('utf8').decode('unicode_escape')
 
-    # Convert string to json format
     data_dict = json.loads(json_data)
 
     return soup_object, data_dict
 
 
 def extract_date(data_dict):
-    """Return the date of the football match (Format: Day - Name of Month - Year)."""
     date = data_dict['h'][0]['date'].split()[0]
     date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
 
     return date.strftime('%d %B %Y')
 
 def extract_summary_stats(soup):
-    """Return the game's summary statistics in a separate Pandas DataFrame."""
     summary_table = soup.find('div', {'class': 'scheme-block', 'data-scheme': 'stats'})
 
     column_labels = [val.text for val in summary_table.find_all('div', {'class': 'progress-title'})]
@@ -119,31 +105,9 @@ def extract_summary_stats(soup):
 
     return summary_df
 
-# def extract_summary_stats(soup_object):
-#     """Return the game's summary statistics in a separate Pandas DataFrame."""
-#     table = soup_object.find('div', {'class': 'scheme-block', 'data-scheme': 'stats'})
-
-#     cols = [val.text for val in table.find_all('div', {'class': 'progress-title'})]
-#     vals = [val.text for val in table.find_all('div', {'class': 'progress-value'})]
-
-#     summary_dict = {}
-#     j = 0
-#     for i in range(len(cols)):
-#         summary_dict[cols[i]] = vals[j:j + 2]
-
-#         increment = 3 if i == 1 else 2
-#         j += increment
-
-#     df_summary = pd.DataFrame(summary_dict, index=['Home', 'Away']).T
-#     df_summary.drop(['CHANCES'], inplace=True)
-#     df_summary.index = ['Teams', 'Goals', 'xG',
-#                         'Shots', 'On Target', 'DEEP', 'PPDA', 'xPTS']
-
-#     return df_summary
 
 
 def extract_headline(df_summary):
-    """Return the headline of the figure."""
     headline = '{} {} - {} {}'.format(
         df_summary.loc['Teams', 'Home'],
         df_summary.loc['Goals', 'Home'],
@@ -154,20 +118,6 @@ def extract_headline(df_summary):
 
 
 def extract_team_names(df_summary):
-    """Return a shortened version of the team names (e.g. 'Manchester United' to 'Man. United').
-    Also, pad right & left with spaces so that all short names have the same length (11 characters).
-    """
-    teams_full = [
-        'Manchester City', 'Liverpool', 'Chelsea', 'Arsenal', 'West Ham',
-        'Tottenham', 'Manchester United', 'Wolverhampton Wanderers', 'Brighton',
-        'Leicester', 'Crystal Palace', 'Brentford', 'Aston Villa', 'Southampton',
-        'Everton', 'Leeds', 'Watford', 'Burnley', 'Newcastle United', 'Norwich']
-
-    teams_short = [
-        'Man. City', 'Liverpool', 'Chelsea', 'Arsenal', 'West Ham', 'Tottenham',
-        'Man. United', 'Wolves', 'Brighton', 'Leicester', 'Cr. Palace',
-        'Brentford', 'Aston Villa', 'Southampton', 'Everton', 'Leeds', 'Watford',
-        'Burnley', 'Newcastle', 'Norwich']
 
     # Pad right & left so that all short names have the same length
     teams_short = [f'{string:^11}' for string in teams_short]
@@ -180,23 +130,6 @@ def extract_team_names(df_summary):
 
     return home_team_short, away_team_short
 
-
-# def get_crest_img(df_summary):
-#     """Return the crests for both teams."""
-#     url_home = 'Crests\{}.png'.format(df_summary.loc['Teams', 'Home'])
-#     img_home = image.imread(url_home)
-
-#     url_away = 'Crests\{}.png'.format(df_summary.loc['Teams', 'Away'])
-#     img_away = image.imread(url_away)
-
-#     return img_home, img_away
-
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-from matplotlib.patches import Arc
 
 
 def draw_pitch(x_min=0,
@@ -212,7 +145,7 @@ def draw_pitch(x_min=0,
                ax=None):
 
     if not ax:
-        raise TypeError('This function is intended to be used with an existing fig and ax in order to allow flexibility in plotting of various sizes and in subplots.')
+        raise TypeError('Select correct orientation')
 
     if orientation.lower().startswith('h'):
         first = 0
@@ -231,7 +164,7 @@ def draw_pitch(x_min=0,
             ax.set_ylim(x_max / 2, x_max + 5)
 
     else:
-        raise NameError('You must choose one of horizontal or vertical')
+        raise NameError('Choose either horizontal or vertical')
 
     ax.axis('off')
 
@@ -372,24 +305,12 @@ import requests
 
 from bs4 import BeautifulSoup
 
-# # Custom functions for extracting match info
-# import match_scraper
-
-# # Custom function for drawing a football pitch
-# from draw_football_pitch import draw_pitch
-
 
 def create_figure(match_id, fig, ax):
-    """Add the figure to the given axes object."""
     soup_object, data_dict = scrape_script_data(match_id)
-
     df_summary = extract_summary_stats(soup_object)
-
     date = extract_date(data_dict)
     headline = extract_headline(df_summary)
-
-#     home_team, away_team = extract_team_names(df_summary)
-    # crest_home, crest_away = get_crest_img(df_summary)
 
     df_home = pd.DataFrame(data_dict['h'])
     df_away = pd.DataFrame(data_dict['a'])
@@ -411,21 +332,19 @@ def create_figure(match_id, fig, ax):
     goal_color = 'red'
     edgecolor = 'white'
     plt.rcParams['text.color'] = 'white'
-
-    # plt.rcParams['font.family'] = 'Century Gothic Regular'
     plt.rcParams.update({'font.size': 24})
 
     fig.patch.set_facecolor(bg_color)
     draw_pitch(pitch_color=bg_color, line_color='lightgrey', ax=ax)
 
-    ### 01 - Shots and Goals ###
+    ### Shots and Goals
     for i, df in enumerate([shots_home, goals_home]):
         ax.scatter(x=105 - df['X'] * 105,
                    y=68 - df['Y'] * 68,
                    s=df['xG'] * 1024,
                    lw=[2, 1][i],
                    alpha=0.7,
-                   facecolor=['none', goal_color][i],
+                   facecolor=['#F1FFC4', goal_color][i],
                    edgecolor=edgecolor)
 
     for i, df in enumerate([shots_away, goals_away]):
@@ -434,30 +353,14 @@ def create_figure(match_id, fig, ax):
                    s=df['xG'] * 1024,
                    lw=[2, 1][i],
                    alpha=0.7,
-                   facecolor=['none', goal_color][i],
+                   facecolor=['#F1FFC4', goal_color][i],
                    edgecolor=edgecolor)
 
-    ### 02 - Title & Subtitle ###
-    ax.text(x=20, y=75, s=headline, size=35, weight='bold')
-    ax.text(x=20, y=71, s='Premier League 2021-22  |  {}'.format(date), size=20)
+    ### Title
+    lg_season = f'{league} {season} | {date}'
+    ax.text(x=15, y=75, s=headline, size=35, weight='bold')
+    ax.text(x=25, y=71, s=lg_season, size=20)
 
-    ### 03 - Team Names ###
-#     for i, team in zip([-1, 1], [home_team, away_team]):
-#         ax.text(x=105 / 2 + i * 14,
-#                 y=63,
-#                 s=team,
-#                 size=35,
-#                 ha='center',
-#                 weight='bold')
-
-    ### 04 - Team Logos ###
-    # for i, img in zip([-1, 1], [crest_home, crest_away]):
-
-    #     imagebox = OffsetImage(img, zoom=0.6)
-    #     ab = AnnotationBbox(imagebox, (105 / 2 + i * 14, 60), frameon=False)
-    #     ax.add_artist(ab)
-
-    ### 05 - Stats ###
     features = ['Goals', 'xG', 'Shots', 'On Target', 'DEEP', 'xPTS']
     for i, feature in enumerate(features):
         if float(df_summary.loc[feature, 'Home']) > float(df_summary.loc[feature, 'Away']):
@@ -473,7 +376,7 @@ def create_figure(match_id, fig, ax):
                 size=22,
                 ha='center',
                 va='center',
-                bbox=dict(facecolor='yellow',
+                bbox=dict(facecolor='#585563',
                           edgecolor=edgecolor,
                           alpha=0.85,
                           pad=0.6,
@@ -486,7 +389,7 @@ def create_figure(match_id, fig, ax):
                 ha='center',
                 va='center',
                 weight=weights[0],
-                bbox=dict(facecolor='white',
+                bbox=dict(facecolor='#6E9887',
                           edgecolor='w',
                           alpha=0.6,
                           pad=0.6,
@@ -499,14 +402,14 @@ def create_figure(match_id, fig, ax):
                 ha='center',
                 va='center',
                 weight=weights[1],
-                bbox=dict(facecolor='firebrick',
+                bbox=dict(facecolor='#6E9887',
                           edgecolor='w',
                           alpha=0.6,
                           pad=0.6,
                           boxstyle='round'))
 
-    ### 06 - Legend - Outcome ###
-    ax.text(x=105 / 4 + 0, y=-5, s='Outcome:', ha='center')
+    ### Outcome
+    ax.text(x=105 / 4 + 0, y=-5, s='Shot Result:', ha='center')
     ax.text(x=105 / 4 - 8, y=-10, s='Shot', ha='center')
     ax.text(x=105 / 4 + 8, y=-10, s='Goal', ha='center')
 
@@ -516,27 +419,27 @@ def create_figure(match_id, fig, ax):
                    s=500,
                    lw=[2, 1][i],
                    alpha=0.7,
-                   facecolor=[bg_color, goal_color][i],
+                   facecolor=['#F1FFC4', goal_color][i],
                    edgecolor=edgecolor)
 
-    ### 07 - Legend - xG value ###
-    ax.text(x=3 * 105 / 4, y=-5, s='xG Value:', ha='center')
+    ### xG Values
+    ax.text(x=3 * 105 / 4, y=-5, s='xG Values:', ha='center')
 
     for i in range(0, 5):
         ax.scatter(x=[69.8, 73.4, 77.7, 82.4, 87.5][i],
                    y=-8.5,
                    s=((i + 1) * 0.2) * 500,
                    lw=2,
-                   color=bg_color,
+                   color='#F1FFC4',
                    edgecolor=edgecolor)
 
-    ### 08 - Legend - Credit ###
+    ### Credit
     credit_text = 'Data: Understat | Sameer Pathan'
     ax.text(x=105, y=-14, s=credit_text, size=16, ha='right')
     # st.write(fig)
     st.pyplot(fig=fig,clear_figure=True)
 
-# match_id = st.text_input('Enter the match ID')
+
 
 fig, ax = plt.subplots(figsize=(18.48, 12))
 
@@ -545,17 +448,9 @@ tab1, tab2 = st.tabs(["Match Visualisation", "xG Timeline"])
 
 with tab1:
 
-    # if st.button('Match Summary'):
     create_figure(final[select_match], fig, ax)
 
-    st.write("This is a match played between so and so.dsvsdflvndflbndfbodfbldfbndfbldfbldfbldflbdfbdfb")
     info2, info3 = st.columns(2)
-    # info1.write("This is a match played between so and so.")
-    with st.expander("See explanation"):
-        st.write("The chart above shows some numbers I picked for you. I rolled actual dice for these, so they're *guaranteed* to be random.")
-        st.image("https://static.streamlit.io/examples/dice.jpg")
-        info2.write("An image describing the graph")
-        info3.write("A key to understand the graph. Color codes.")
 
 
 def xg_timeline(match_id):
@@ -575,37 +470,27 @@ def xg_timeline(match_id):
     shots_match = json.loads(json_data)
 
 
-    # Creatinf the 2 dfs
-
     df_away = pd.DataFrame(shots_match['a'])
     df_home = pd.DataFrame(shots_match['h'])
 
-    # Selecting only the useful columns
-
+    # Selecting the required columns
     df_away = df_away[['minute','player',"a_team",'result','xG','h_a']]
     df_home = df_home[['minute','player',"h_team",'result','xG','h_a']]
-
-    # Renaming columns 
 
     df_away.rename(columns={"a_team": "team"})
     df_home.rename(columns={"h_team": "team"})
 
-    # Changing data types
-
     df_away = df_away.astype({"xG": float, "minute": float})
     df_home = df_home.astype({"xG": float, "minute": float})
 
-    # Creating new column xG cumulative
     df_away['xGcum'] = np.cumsum(df_away['xG'])
     df_home['xGcum'] = np.cumsum(df_home['xG'])
 
-    # creating the dictionaries
     x = df_home[df_home['result']=='Goal']['minute'].tolist()
     x1 = df_away[df_away['result']=='Goal']['minute'].tolist()
     y =df_home[df_home['result']=='Goal']['xGcum'].tolist()
     y1 = df_away[df_away['result']=='Goal']['xGcum'].tolist()
 
-    # xG inside the scatterplots
     y_plot =np.round(df_home[df_home['result']=='Goal']['xG'],2).tolist()
     y1_plot = np.round(df_away[df_away['result']=='Goal']['xG'],2).tolist()
 
@@ -614,27 +499,21 @@ def xg_timeline(match_id):
     text_away = df_away[df_away['result']=='Goal']['player'].tolist()
     label_home = df_home['h_team'].unique().tolist()
     label_away = df_away['a_team'].unique().tolist()
-
-    # More annotation text
     xGcum_away = str(np.round(df_away['xGcum'].iloc[-1],3))
     xGcum_home = str(np.round(df_home['xGcum'].iloc[-1],3))
     team_away = str(df_away['a_team'].iloc[-1])
     team_home = str(df_home['h_team'].iloc[-1])
 
-
-    # plot style 
     plt.style.use('fivethirtyeight')
     fig,ax = plt.subplots(figsize = (16,8))
 
-    # Step plot for Inter and Udinese 
+    # Step plot
     ax.step(x = df_home['minute'] ,y = df_home['xGcum'] , where = 'post', color = 'blue' ,linewidth = 4.0)
     ax.step(x = df_away['minute'] ,y = df_away['xGcum'] , where = 'post', color = 'red' ,linewidth = 4.0)
 
-    #sns.scatterplot(x=x,y=y,s=430,marker='o',color='yellow')
-    ax.scatter(x=x,y=y, color='blue', edgecolor='black',s=955, label="Inter",linewidths=1.5,)
-    ax.scatter(x=x1,y=y1, color='red', edgecolor='black',s=955, label="Udinese",linewidths=1.5)
+    ax.scatter(x=x,y=y, color='blue', edgecolor='black',s=955, label=f"{team_home}",linewidths=1.5,)
+    ax.scatter(x=x1,y=y1, color='red', edgecolor='black',s=955, label="{team_away}",linewidths=1.5)
 
-    #FILL AREA BETWEEN LINE AND X 
     plt.fill_between(x,y, alpha=0.08, color='cyan')
     plt.fill_between(x1,y1, alpha=0.08, color='red')
 
@@ -650,7 +529,7 @@ def xg_timeline(match_id):
     legend.legendHandles[1]._sizes = [1000]
 
     # title
-    fig_text(0.08,1.03, s="xG Flowchart Calcio Serie A\n", fontsize = 25, fontweight = "bold")
+    fig_text(0.08,1.03, s="xG Flowchart\n", fontsize = 25, fontweight = "bold",color="black")
     fig_text(0.08,0.97, s=" <{} {} xG> vs <{} {} xG>".format(team_home,xGcum_home,team_away,xGcum_away),highlight_textprops=[{"color":'blue'}, {'color':"red"}], fontsize = 20, fontweight="light")
 
     # text
@@ -659,13 +538,11 @@ def xg_timeline(match_id):
     fig_text(0.25,0.9, s="First Half\n", fontsize = 18, fontweight = "bold", color = "black")
     fig_text(0.75,0.9, s="Second Half\n", fontsize = 18, fontweight = "bold", color = "black")
 
-    # Finally a dotted line to separate the HT 
+
     plt.vlines( ymin=0, ymax=4,x=45, color='black', alpha=0.1,linestyle="solid")
-    # ticks
     plt.xticks([0,15,30,45,60,75,90])
     plt.yticks([0,0.5,1,1.5,2,2.5,3,3.5,4])
 
-    # Annotate quality chances inside the scatterplots
 
     # Home team
     for i in range(len(x)):
@@ -677,14 +554,10 @@ def xg_timeline(match_id):
     st.write(fig)
 
 
-# tab1.write("this is tab 1")
-# tab2.write("this is tab 2")
 with tab2:
-    # if st.button('xG Timeline'):
     xg_timeline(final[select_match])
     with st.expander("xG Value Explanation"):
-        st.write("The chart above shows some numbers I picked for you. I rolled actual dice for these, so they're *guaranteed* to be random.")
-        st.image("https://static.streamlit.io/examples/dice.jpg")
+        st.write("XG (Expected Goals) is a statistic used in soccer analytics to measure the quality of a shot based on several variables such as the location of the shot, the type of action that led to the shot, and the type of shot.")
 
 with st.expander('This is how the data looks like.'):
     st.dataframe(matches.head(5))

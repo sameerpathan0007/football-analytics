@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.header('Shotmaps')
+
 
 import requests
 from bs4 import BeautifulSoup
@@ -13,14 +13,40 @@ from matplotlib.patches import Arc
 import numpy as np
 from mplsoccer import Pitch, FontManager, Sbopen
 
-# st.write('Enter Player ID')
-player_id = st.text_input('Enter Player ID')
-link = f"https://understat.com/player/{player_id}"
-if st.button('Generate Shotmap!'):
+css_file = "D:\Analytics\styles.css"
+with open(css_file) as f:
+    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+
+st.markdown("<h1 style='text-align: center'>Shot Maps</h1>", unsafe_allow_html=True)
+
+
+
+
+col1, col2 = st.columns(2)
+players = ["Lionel Messi","Karim Benzema","Cristiano Ronaldo","Erling Haaland","Kylian Mbappe","Vinicius Jr","Neymar Jr","Kevin De Bruyne"]
+seasons = ["2014/15","2015/16","2016/17","2017/18","2018/19","2019/20","2020/21","2021/22","2022/23","Career Total"]
+with col1:
+
+    player = st.selectbox(
+        'Select a Player',
+        players)
+
+with col2:
+
+    season = st.select_slider(
+        'Select a Season',
+        seasons)
+
+types = st.multiselect(
+    'Select the type of goal',
+    ['Right Foot', 'Head', 'Left Foot'])
+
+link = f"https://understat.com/player/{player}"
+
+if st.button("Generate Shotmap"):
     res = requests.get(link)
     soup = BeautifulSoup(res.content,'lxml')
     scripts = soup.find_all('script')
-    # Get the grouped stats data, it's the second script executed in order
     strings = scripts[3].string
     # Getting rid of unnecessary characters from json data
     ind_start = strings.index("('")+2 
@@ -31,13 +57,13 @@ if st.button('Generate Shotmap!'):
 
     shots2 = pd.DataFrame(data) # Player shot data
     shots_Data = pd.read_csv('D:\Analytics\shots_dataset.csv')
-    shots = shots_Data[shots_Data['player'] == 'Cristiano Ronaldo']
+    shots = shots_Data[shots_Data['player'] == 'Karim Benzema']
 
-    st.write(shots.head())
+    
     # name2 = shots['player'][0]
-    name = 'Cristiano Ronaldo'
+    name = 'Karim Benzema'
 
-    st.subheader(f'Player Selected: {name}')
+    st.markdown("<h3 style='text-align: center'>Career Shots</h3>", unsafe_allow_html=True)
     # Changing data type
     shots['xG'] = shots['xG'].astype('float64')
     shots['X'] = shots['X'].astype('float64')
@@ -207,18 +233,13 @@ if st.button('Generate Shotmap!'):
     # Drawing a full pitch horizontally
     football_pitch(orientation="horizontal",aspect="full",line_color="white",ax=ax, axis='on')
     plt.tight_layout()
-    # pitch = Pitch(pitch_type='statsbomb', pitch_color='grass', line_color='#c7d5cc')
-    # fig, ax = pitch.draw(figsize=(16, 11), constrained_layout=True, tight_layout=False)
-    # fig.set_facecolor("#22312b")
-    # st.write(fig)
 
     shots['X1'] = (shots['X']/100)*105*100
     shots['Y1'] = (shots['Y']/100)*68*100
-    # Original X and Y
+
     shots['X'] = (shots['X']/100)*105*100
     shots['Y'] = (shots['Y']/100)*68*100
 
-    # New dictionaries 
     total_shots = shots[shots.columns[0]].count().tolist()
     xGcum = np.round(max(np.cumsum(shots['xG'])),3).tolist()
     xG_per_shot = np.round(max(np.cumsum(shots['xG']))/(shots[shots.columns[0]].count()),3).tolist()
@@ -232,22 +253,20 @@ if st.button('Generate Shotmap!'):
     fig, ax = plt.subplots(figsize=(20, 10))
     football_pitch(orientation="vertical",aspect="half",line_color="black",ax=ax,axis="off")
 
-    #Drawing a full pitch horizontally
+
     z = goal['xG'].tolist()
     z1 = [500 * i for i in z] # This is to scale the "xG" values for plotting
-    color = {'Goal':'cyan', 'MissedShots':'red', 'BlockedShot':'tomato', 'SavedShot':'black', 'ShotOnPost':'Yellow'}
-    ## markers = {'Goal':'Star', 'MissedShots':'X', 'BlockedShot':'O', 'SavedShot':'V', 'ShotOnPost':'S'}
-
-    # Plotting the goals, the missed chances shot on post etc 
-    plt.scatter(y=goal["X1"],x=goal["Y1"],s=goal['xG']*720, marker='o',color='cyan',edgecolors="black",label='Goals')
+    color = {'Goal':'green', 'MissedShots':'red', 'BlockedShot':'blue', 'SavedShot':'black', 'ShotOnPost':'Yellow'}
+    
+    # Plotting
+    plt.scatter(y=goal["X1"],x=goal["Y1"],s=goal['xG']*720, marker='o',color='green',edgecolors="black",label='Goals')
     plt.scatter(y=shot_on_post["X1"],x=shot_on_post["Y1"],s=shot_on_post['xG']*720, marker='o',color='yellow',edgecolors="black",label='Shot on Post',alpha=0.5)
     plt.scatter(y=missed_shot["X1"],x=missed_shot["Y1"],s=missed_shot['xG']*720, marker='o',color='red',edgecolors="black",label='Missed Shot',alpha=0.5)
-    plt.scatter(y=blocked_shot["X1"],x=blocked_shot["Y1"],s=blocked_shot['xG']*720, marker='o',color='green',edgecolors="black",label='Blocked Shot',alpha=0.5)
+    plt.scatter(y=blocked_shot["X1"],x=blocked_shot["Y1"],s=blocked_shot['xG']*720, marker='o',color='blue',edgecolors="black",label='Blocked Shot',alpha=0.5)
     plt.scatter(y=saved_shot["X1"],x=saved_shot["Y1"],s=saved_shot['xG']*720, marker='o',color='purple',edgecolors="black",label='Saved Shot',alpha=0.5)
+    
+    
     #legend 
-    # another way to do it 
-    #ax.legend(loc='upper center', bbox_to_anchor= (0.13, 0.87),
-                #borderaxespad=0, frameon=False)
     legend = ax.legend(loc="upper center",bbox_to_anchor= (0.14, 0.88),labelspacing=1.3,prop={'weight':'bold','size':11})
     legend.legendHandles[0]._sizes = [500]
     legend.legendHandles[1]._sizes = [500]
@@ -260,17 +279,17 @@ if st.button('Generate Shotmap!'):
     mSizeS = [720 * i for i in mSize]
     mx = [60,60,60,60,60,60]
     my = [92,94,96,98,100,102]
-    plt.scatter(mx,my,s=mSizeS,facecolors="cyan", edgecolor="black")
+    plt.scatter(mx,my,s=mSizeS,facecolors="green", edgecolor="black")
     for i in range(len(mx)):
         plt.text(mx[i]+ 2.8, my[i], mSize[i], fontsize=12, color="black",ha="center", va="center",fontweight='bold')
     # Annotation text
-    fig_text(0.42,0.91, s=f"{name} Career Shots\n", fontsize = 25, fontweight = "bold",c='cyan')
-    fig_text(0.47,0.37, s="Shots:\n\nxGcum:\n\nxG per shot:\n\nGoals: ", fontsize = 12, fontweight = "bold",c='black')
-    fig_text(0.54,0.37, s="<{}\n\n{}\n\n{}\n\n{}>".format(total_shots,xGcum,xG_per_shot,goals), fontsize = 12, fontweight = "bold",c='cyan')
+    fig_text(0.37,0.91, s=f"{name} Career Shots\n", fontsize = 25, fontweight = "bold",c='red')
+    fig_text(0.47,0.37, s="Shots:\n\nxGcum:\n\nxG per shot:\n\nGoals: ", fontsize = 12, fontweight = "bold",c='red')
+    fig_text(0.54,0.37, s="<{}\n\n{}\n\n{}\n\n{}>".format(total_shots,xGcum,xG_per_shot,goals), fontsize = 12, fontweight = "bold",c='red')
 
     st.write(fig)
 
-    st.subheader('Career Goals')
+    st.markdown("<h3 style='text-align: center'>Career Goals</h3>", unsafe_allow_html=True)
 
     head = goal[goal['shotType']=='Head']
     left_foot = goal[goal['shotType']=='LeftFoot']
@@ -282,47 +301,27 @@ if st.button('Generate Shotmap!'):
     fig, ax = plt.subplots(figsize=(20, 10))
     football_pitch(orientation="vertical",aspect="half",line_color="black",ax=ax,axis="off")
 
-    #Drawing a full pitch horizontally
     z = goal['xG'].tolist()
     z1 = [500 * i for i in z] # This is to scale the "xG" values for plotting
     colors = {'Goal':'cyan', 'MissedShots':'red', 'BlockedShot':'tomato', 'SavedShot':'black', 'ShotOnPost':'Yellow'}
-    ## markers = {'Goal':'Star', 'MissedShots':'X', 'BlockedShot':'O', 'SavedShot':'V', 'ShotOnPost':'S'}
 
-
-    # Plotting the goals, the missed chances shot on post etc
-    # if st.button("Left Foot Goals"):
     plt.scatter(y=goal[goal['shotType']=='LeftFoot']['X1'],x=goal[goal['shotType']=='LeftFoot']['Y1'],s=goal[goal['shotType']=='LeftFoot']['xG']*720, marker='o',color='tomato',edgecolors="black",label='Left Foot')
-
-
-    plt.scatter(y=goal[goal['shotType']=='RightFoot']['X1'],x=goal[goal['shotType']=='RightFoot']['Y1'],s=goal[goal['shotType']=='RightFoot']['xG']*720, marker='o',color='yellow',edgecolors="black",label='Right Foot')
-
-    # if st.button("Right  Foot Goals"):
-    #     # right_foot()
-
-    plt.scatter(y=goal[goal['shotType']=='Head']['X1'],x=goal[goal['shotType']=='Head']['Y1'],s=goal[goal['shotType']=='Head']['xG']*720, marker='o',color='cyan',edgecolors="black",label='Head')
-
-    options = st.multiselect("Type of Goals",options=['Right Foot', 'Head'])
-
-    if options == 'Right Foot':
-        right_foot()
-
-    if st.button("Head Goals"): 
-        plt.scatter(y=goal[goal['shotType']=='Head']['X1'],x=goal[goal['shotType']=='Head']['Y1'],s=goal[goal['shotType']=='Head']['xG']*720, marker='o',color='cyan',edgecolors="black",label='Head')
-
+    plt.scatter(y=goal[goal['shotType']=='RightFoot']['X1'],x=goal[goal['shotType']=='RightFoot']['Y1'],s=goal[goal['shotType']=='RightFoot']['xG']*720, marker='o',color='grey',edgecolors="black",label='Right Foot')
+    plt.scatter(y=goal[goal['shotType']=='Head']['X1'],x=goal[goal['shotType']=='Head']['Y1'],s=goal[goal['shotType']=='Head']['xG']*720, marker='o',color='yellow',edgecolors="black",label='Head')
 
     # xG Size
     mSize = [0.05,0.10,0.2,0.4,0.6,0.8]
     mSizeS = [720 * i for i in mSize]
     mx = [60,60,60,60,60,60]
     my = [92,94,96,98,100,102]
-    plt.scatter(mx,my,s=mSizeS,facecolors="cyan", edgecolor="black")
+    plt.scatter(mx,my,s=mSizeS,facecolors="red", edgecolor="black")
     for i in range(len(mx)):
         plt.text(mx[i]+ 2.5, my[i], mSize[i], fontsize=12, color="black",ha="center", va="center",fontweight='bold')
 
     # Pitch map text
-    fig_text(0.42,0.91, s=f"{name} Career Goals\n", fontsize = 25, fontweight = "bold",c='cyan')
+    fig_text(0.37,0.91, s=f"{name} Career Goals\n", fontsize = 25, fontweight = "bold",c='black')
     fig_text(0.47,0.37, s="Goals:\n\nRight Foot:\n\nLeft Foot:\n\nHead: ", fontsize = 15, fontweight = "bold",c='black')
-    fig_text(0.54,0.37, s=" <{}>\n\n <{}>\n\n < {}>\n\n  <{}>".format(goals,right_foot,left_foot,head), fontsize = 15, fontweight = "light",highlight_textprops=[{"color":'cyan'}, {'color':"yellow"}, {'color':"tomato"}, {'color':"cyan"}])
+    fig_text(0.54,0.37, s=" <{}>\n\n <{}>\n\n < {}>\n\n  <{}>".format(goals,right_foot,left_foot,head), fontsize = 15, fontweight = "light",highlight_textprops=[{"color":'red'}, {'color':"red"}, {'color':"red"}, {'color':"red"}])
 
     # Legend
     legend = ax.legend(loc="upper center",bbox_to_anchor= (0.13, 0.87))
@@ -332,3 +331,6 @@ if st.button('Generate Shotmap!'):
 
 
     st.write(fig)
+
+    with st.expander("See how the data looks like"):
+        st.write(shots.head())
